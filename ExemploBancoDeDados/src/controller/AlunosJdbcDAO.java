@@ -28,5 +28,16 @@ public class AlunosJdbcDAO {
         prepareStatement.close();
 	}
 	
-	
+	public void alterar(Alunos c) {
+		String sql = "update alunos set nome='"+c.getNome()+"',endereco='"+c.getEndereco()+"',bairro='"+c.getBairro()+"';";
+		System.out.println(sql);
+		PreparedStatement prepareStatement;
+		try {
+			prepareStatement = this.conn.prepareStatement(sql);
+			prepareStatement.executeUpdate();
+            prepareStatement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
+	}
 }
