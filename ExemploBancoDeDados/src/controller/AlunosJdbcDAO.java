@@ -52,4 +52,29 @@ public class AlunosJdbcDAO {
 			e.printStackTrace();
 		}                		
 	}
+	
+	public List<Alunos> listar() {
+		String sql = "select * from alunos";
+        System.out.println(sql);		
+        List<Alunos> alunos = new ArrayList<Alunos>();
+		try {
+			PreparedStatement prepareStatement = this.conn.prepareStatement(sql);
+			ResultSet rs = prepareStatement.executeQuery();
+			while(rs.next()) {
+				int id = rs.getInt("id");
+				String nome = rs.getString("nome");
+				String endereco = rs.getString("endereco");
+				String bairro = rs.getString("bairro");
+				Alunos aluno = new Alunos();
+				aluno.setId(id);
+				aluno.setNome(nome);
+				aluno.setEndereco(endereco);
+				aluno.setBairro(bairro);
+			}
+			prepareStatement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return alunos;
+	}
 }
