@@ -40,4 +40,16 @@ public class AlunosJdbcDAO {
 			e.printStackTrace();
 		}		
 	}
+	
+	public void excluir(int id) {
+		String sql = "delete from alunos where id='"+id+"';";
+		System.out.println(sql);
+        try {
+    		PreparedStatement prepareStatement = this.conn.prepareStatement(sql);
+    		prepareStatement.executeUpdate();
+			prepareStatement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}                		
+	}
 }
